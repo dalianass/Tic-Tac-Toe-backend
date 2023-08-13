@@ -5,7 +5,7 @@ AI_PLAYER = 'O'
 
 def minimax(board, depth, isMaximizingPlayer, alpha, beta):
     if proveriPobedu(board):
-        return evaluate(board)
+        return evaluate(board, depth)
 
     if isMaximizingPlayer:
         maxEval = float('-inf')
@@ -70,22 +70,22 @@ def proveriPobedu(board):
                 return False  # tabla jos nije popunjena
     return True  # Nereseno je
 
-def evaluate(board):
+def evaluate(board, depth):
     # redovi
     for i in range(3):
         if board[i][0] != '' and board[i][0] == board[i][1] and board[i][0] == board[i][2]:
-            return 10 if board[i][0] == AI_PLAYER else -10
+            return 10 - depth if board[i][0] == AI_PLAYER else depth - 10
 
     # kolone
     for i in range(3):
         if board[0][i] != '' and board[0][i] == board[1][i] and board[0][i] == board[2][i]:
-            return 10 if board[0][i] == AI_PLAYER else -10
+            return 10 - depth if board[0][i] == AI_PLAYER else depth - 10
 
     # dijagonale
     if board[0][0] != '' and board[0][0] == board[1][1] and board[0][0] == board[2][2]:
-        return 10 if board[0][0] == AI_PLAYER else -10
+        return 10 - depth if board[0][0] == AI_PLAYER else depth - 10
 
     if board[0][2] != '' and board[0][2] == board[1][1] and board[0][2] == board[2][0]:
-        return 10 if board[0][2] == AI_PLAYER else -10
+        return 10 - depth if board[0][2] == AI_PLAYER else depth - 10
 
     return 0  # nereseno je

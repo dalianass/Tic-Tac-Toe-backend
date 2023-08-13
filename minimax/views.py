@@ -7,7 +7,7 @@ from urllib.parse import unquote
 import json
 
 brd = [
-    ['X', '', ''],
+    ['', '', ''],
     ['', '', ''],
     ['', '', '']
   ]
